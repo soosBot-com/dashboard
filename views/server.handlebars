@@ -1,0 +1,241 @@
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body {
+  background-color: #36393f;
+}
+
+.sidebar {
+  height: 100%;
+  width: 5em;
+  background-color: #202225;
+  position: sticky;
+}
+
+.sidebar .profile img {
+  cursor: pointer;
+}
+
+.sidebar .server_icon {
+  cursor: pointer;
+}
+
+.profile {
+  padding: 0.5em;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+.profile img {
+  height: 3.5em;
+  width: 3.5em;
+  border-radius: 1em;
+  border: 0.125em solid #c9c9c9;
+  -webkit-box-shadow: 1px 1px 20px 1px black;
+          box-shadow: 1px 1px 20px 1px black;
+}
+
+.separator {
+  border: 1px solid #484b50;
+  text-align: center;
+  width: 4em;
+  margin: auto;
+}
+
+.servers {
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 1em;
+}
+
+.servers img {
+  height: 3em;
+  width: 3em;
+  border-radius: 0.25em;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.servers img:hover {
+  background: #36393f;
+}
+
+.servers ul {
+  list-style-type: none;
+}
+
+.servers li {
+  padding-top: 0.75em;
+}
+
+.server_with_out_icon {
+  height: 3em;
+  width: 3em;
+  border-radius: 0.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  background: #36393f;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.server_with_out_icon:hover {
+  background: #7289da;
+}
+
+.server_with_out_icon h2 {
+  color: #ffffff;
+  font-size: 1em;
+}
+
+.tooltip {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+
+.tooltip:hover .right {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip .right {
+  display: inline-block;
+  top: 50%;
+  left: 100%;
+  margin-left: 20px;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  padding: 10px 20px;
+  color: #e7e4e4;
+  background-color: #000000;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 99999999;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.8s;
+  transition: opacity 0.8s;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.tooltip .right i {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -12px;
+  width: 12px;
+  height: 24px;
+  overflow: hidden;
+}
+
+.tooltip .right i::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translate(50%, -50%) rotate(-45deg);
+          transform: translate(50%, -50%) rotate(-45deg);
+  background-color: #000000;
+  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.current_server {
+  position: absolute;
+
+
+  left: 50%;
+
+
+  top: 50%;
+
+
+  transform: translate(-50%, -50%);
+}
+.selected_server {
+    position: absolute;
+    display: block;
+    width: 8px;
+    border-radius: 1em;
+    background-color: white;
+    margin-top: +4px;
+    margin-left: -1.5px;
+    float: left;
+}
+/*# sourceMappingURL=stylesheet.css.map */
+</style>
+
+<link rel="stylesheet" href="#">
+<div class="sidebar">
+    <div class="profile">
+        {{#if user.avatar}}
+        <img src="https://cdn.discordapp.com/avatars/{{user.id}}/{{user.avatar}}?size=512">
+            {{else}}
+            <img src="https://cdn.discordapp.com/embed/avatars/0.png">
+        {{/if}}
+    </div>
+    <hr class="separator">
+    <div class="servers">
+        <ul>
+        {{#each guilds as |key value|}}
+        <li>
+            <span class="selected_server" style="opacity: 1; height: 40px; transform: none;"></span> 
+            {{#if key.icon}}
+            <div class="btn btn-primary tooltip"> <img class="server_icon" src="https://cdn.discordapp.com/icons/{{key.id}}/{{key.icon}}?size=64" alt="?" onclick="location.replace('/server/{{key.id}}');">
+                <div class="right">
+                    <p>{{key.name}}</p>
+                    <i></i>
+                </div>
+            </div>
+                {{else}}
+                <div class="btn btn-primary tooltip"> <div class="server_with_out_icon" onclick="location.replace('/server/{{key.id}}');" ><h2>{{format_server_name key.name}}</h2></div>
+                    <div class="right">
+                        <p>{{key.name}}</p>
+                        <i></i>
+                    </div>
+                </div>
+            {{/if}}
+        </li>
+        {{/each}}
+        </ul>
+    </div>
+</div>
+
+
+<div class="current_server">
+{{#if selected_server.icon}}
+<img class="server_icon" src="https://cdn.discordapp.com/icons/{{selected_server.id}}/{{selected_server.icon}}?size=64" alt="?" onclick="location.replace('/server/{{selected_server.id}}');">
+    {{else}}
+    <div class="server_with_out_icon" onclick="location.replace('/server/{{selected_server.id}}');" ><h2>{{format_server_name selected_server.name}}</h2></div>
+{{/if}}
+</div>
