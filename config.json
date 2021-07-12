@@ -12,6 +12,7 @@
             "maxAge": 6400000
         },
         "resave": true,
-        "saveUninitialized": false
+        "saveUninitialized": false,
+        "" : ""
     }
 }
