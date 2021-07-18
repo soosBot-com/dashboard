@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import LoginPage from './components/login'
+import LoginPage from './components/Login'
+import { Link } from 'react-router-dom'
+import { Tooltip } from "@material-ui/core";
+import Fade from '@material-ui/core/Fade';
 
 export default function HomePage() {
         const [loading, setLoading] = useState(true)
@@ -21,7 +24,6 @@ export default function HomePage() {
            return setLoading(false)
         }
       }
-
     useEffect(() => {
         setLoading(true)
         if (loggedIn && user) {
@@ -35,10 +37,9 @@ export default function HomePage() {
                 // if you don't return, you won't get the value in the next `then`
                 .then((data) => {
                     setLoggedin(data)
-                    setLoading(false)
                     return data // assuming a boolean??
                 })
-                .then(getUsersData)
+                .then(getUsersData, () => setLoading(false))
             } else {
                 return setLoading(false)
             }
@@ -49,7 +50,7 @@ export default function HomePage() {
     if (loading) {
         return (
         <>
-        <div class="loading">
+        <div className="loading">
         <img src="https://media.discordapp.net/attachments/762482391599022100/829461107752042566/loading.gif" alt="Loading"></img>
         </div>
         </>
@@ -58,9 +59,19 @@ export default function HomePage() {
     if (user) {
         return (
         <>
-        <div class="user">
-        <img src={getUsersAvatar()} alt="?"></img>
-        <h1>Welcome {user.username}#{user.discriminator}!</h1>
+        <div className="user">
+        <Tooltip title={<h1 className="username">{`${user.username}#${user.discriminator}`}</h1>}placement="right" arrow TransitionComponent={Fade} TransitionProps={{ timeout: 400 }}>
+            <img src={getUsersAvatar()} alt="?"></img>
+        </Tooltip>
+        <h1>Dashboard</h1>
+        <Link to="/logout" >
+        <button className="loginButton" >
+            Logout
+        </button>
+        </Link>
+        <p className="text">Nothing to see here...</p>
+
+        
         </div>
         </>
         )

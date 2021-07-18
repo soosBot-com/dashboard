@@ -1,7 +1,7 @@
 import { useLocation, Redirect } from 'react-router-dom'
 import queryString from 'query-string';
 
-export default function HomePage() {
+export default function LoginCallback() {
     const { search } = useLocation()
     const { token } = queryString.parse(search)
 
