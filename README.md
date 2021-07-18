@@ -5,6 +5,12 @@ This is the front-end react app of soosBot's [Dashboard](https://dash.soosbot.co
 # Hosting/Running
 I don't want anyone running this, but if you are too dumb to code a client-side react app, here's how to do it. 
 
+#### Download the required node modules
+
+```js
+npm install
+```
+
 #### After downloading the node packages, run the command below to get a build folder containing static files.
 ```js
 npm run build
