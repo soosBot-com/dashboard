@@ -3,6 +3,7 @@ import LoginPage from './components/Login'
 import { Link } from 'react-router-dom'
 import { Tooltip } from "@material-ui/core";
 import Fade from '@material-ui/core/Fade';
+import Loading from './components/Loading'
 
 export default function HomePage() {
         const [loading, setLoading] = useState(true)
@@ -48,13 +49,7 @@ export default function HomePage() {
     , [loggedIn, user]);
     
     if (loading) {
-        return (
-        <>
-        <div className="loading">
-        <img src="https://media.discordapp.net/attachments/762482391599022100/829461107752042566/loading.gif" alt="Loading"></img>
-        </div>
-        </>
-        )}
+        return (<Loading />)}
 
     if (user) {
         return (
@@ -64,12 +59,11 @@ export default function HomePage() {
             <img src={getUsersAvatar()} alt="?"></img>
         </Tooltip>
         <h1>Dashboard</h1>
-        <Link to="/logout" >
-        <button className="loginButton" >
+        <p className="text">Nothing to see here...</p>
+
+        <button className="loginButton" onClick={() => {window.location.href = "/logout"}} >
             Logout
         </button>
-        </Link>
-        <p className="text">Nothing to see here...</p>
 
         
         </div>

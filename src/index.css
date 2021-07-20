@@ -8,14 +8,16 @@ body {
 .loginDiv {
     background: #26292e;
     color: white;
-    padding: 5em;
+    padding: 2em;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 10px;
-    font-family: 'Roboto', sans-serif;
+    border-radius: 1em;
+    font-family: 'Quicksand', sans-serif;
     box-shadow: 3px 3px 60px 6px black;
+    animation: fade 0.2s ease-in;
+    border: 10px solid #24262b;
 }
 
 .loginButton {
@@ -31,6 +33,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     transition: .17s ease;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .loginButton:hover {
@@ -49,22 +52,30 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 10px;
+    border-radius: 1em;
     font-family: 'Quicksand', sans-serif;
     box-shadow: 3px 3px 60px 6px black;
     text-align: center;
+    animation: fade 0.2s ease-in;
+    border: 10px solid #24262b;
+
+
+}
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
 }
 
 .user img {
     border-radius: 1em;
     height: 5em;
-    border: 5px solid #555;
+    border: 5px solid rgb(206, 206, 206);
     box-shadow: 3px 3px 60px 6px black;
     cursor: pointer;
 }
 
 .loading {
-    padding: 2em;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -74,8 +85,13 @@ body {
 }
 
 .loading img {
-    height: 2em;
-    width: 2em;
+    height: 3em;
+    width: 3em;
+}
+
+.loading h1 {
+    color: white;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .username {
