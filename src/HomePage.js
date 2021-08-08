@@ -1,76 +1,84 @@
-import { useEffect, useState } from "react";
-import LoginPage from './components/Login'
-import { Link } from 'react-router-dom'
-import { Tooltip } from "@material-ui/core";
-import Fade from '@material-ui/core/Fade';
-import Loading from './components/Loading'
+import Sidebar from './sidebar/Sidebar'
 
-export default function HomePage() {
-        const [loading, setLoading] = useState(true)
-        const [loggedIn, setLoggedin] = useState(false);
-        const [user, setUser] = useState(undefined);
-
-    function getUsersAvatar() {
-        if (!user.avatar) {
-            return `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discriminator)%5}.png`
-        } else {
-            return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`
+export default function HomePage( {user, servers, connections} ) {
+    const connections_list = {
+        "twitch": {
+            "name": "Twitch",
+            "icon": "https://discord.com/assets/edbbf6107b2cd4334d582b26e1ac786d.png"
+        },
+        "youtube": {
+            "name": "YouTube",
+            "icon": "https://discord.com/assets/449cca50c1452b4ace3cbe9bc5ae0fd6.png"
+        },
+        "battlenet": {
+            "name": "Battle.net",
+            "icon": "https://discord.com/assets/8c289d499232cd8e9582b4a5639d9d1d.png"
+        },
+        "steam": {
+            "name": "Steam",
+            "icon": "https://discord.com/assets/f09c1c70a67ceaaeb455d163f3f9cbb8.png"
+        },
+        "reddit": {
+            "name": "Reddit",
+            "icon": "https://discord.com/assets/3abe9ce5a00cc24bd8aae04bf5968f4c.png"
+        },
+        "facebook": {
+            "name": "Facebook",
+            "icon": "https://discord.com/assets/8d8f815f3d81a33b1e70ec7c22e1b6fe.png"
+        },
+        "twitter": {
+            "name": "Twitter",
+            "icon": "https://discord.com/assets/4662875160dc4c56954003ebda995414.png"
+        },
+        "spotify": {
+            "name": "Spotify",
+            "icon": "https://discord.com/assets/f0655521c19c08c4ea4e508044ec7d8c.png"
+        },
+        "xbox": {
+            "name": "Xbox",
+            "icon": "https://discord.com/assets/0d44ba28e39303de3832db580a252456.png"
+        },
+        "github": {
+            "name": "GitHub",
+            "icon": "https://discord.com/assets/5d69e29f0d71aaa04ed9725100199b4e.png"
         }
     }
-    function getUsersData(isLoggedIn) {
-        if (isLoggedIn) {
-           const token = window.localStorage.getItem("token");
-           fetch(`https://api.soosbot.com/dashboard/user/?token=${token}`).then((res) => res.json()).then((data) => setUser((data)));
-        } else {
-           return setLoading(false)
-        }
-      }
-    useEffect(() => {
-        setLoading(true)
-        if (loggedIn && user) {
-            setLoading(false)
-            return
-        } else {
-            const token = window.localStorage.getItem("token");
-            if (token) {
-                fetch(`https://api.soosbot.com/dashboard/verify/?token=${token}`)
-                .then((res) => res.json())
-                // if you don't return, you won't get the value in the next `then`
-                .then((data) => {
-                    setLoggedin(data)
-                    return data // assuming a boolean??
-                })
-                .then(getUsersData, () => setLoading(false))
-            } else {
-                return setLoading(false)
-            }
-                
-        }}
-    , [loggedIn, user]);
-    
-    if (loading) {
-        return (<Loading />)}
-
-    if (user) {
-        return (
+    connections.map(connection => {return (
+            console.log(connections_list[connection.type])
+    )})
+    return(
         <>
-        <div className="user">
-        <Tooltip title={<h1 className="username">{`${user.username}#${user.discriminator}`}</h1>}placement="right" arrow TransitionComponent={Fade} TransitionProps={{ timeout: 400 }}>
-            <img src={getUsersAvatar()} alt="?"></img>
-        </Tooltip>
-        <h1>Dashboard</h1>
-        <p className="text">Nothing to see here...</p>
-
-        <button className="loginButton" onClick={() => {window.location.href = "/logout"}} >
-            Logout
-        </button>
-
-        
+        <div className="main">
+        <Sidebar servers={servers} user={user} />
+        <div className="homepage">
+            <div className="homeh1">
+                <h1>Home</h1>
+            </div>
+            <div className="analytics">
+                <h1>Analytics</h1>
+                <div className="cmd-analytics">
+                </div>
+            </div>
+            <div className="connections">
+                {/* <ul>
+                    {connections.map(connection => { 
+                        if (true) {return (
+                            <>
+                            <li>
+                                <div className="connection">
+                                    <h3>{connection.name}</h3>
+                                    <div className="connection-name-and-icon">
+                                        <img src={connections_list[connection.type].icon} alt="icon" /> 
+                                        <p>{connections_list[connection.type].name}</p>
+                                    </div>
+                                </div>
+                            </li>
+                            </>
+                        )} else {return (null)}})}
+                </ul> */}
+            </div>
+        </div>
         </div>
         </>
-        )
-    }
-    else {
-        return <LoginPage/>
-    }
+    )
 }

@@ -8,7 +8,7 @@ export default function Servers({ servers }) {
     }
     return (
         (servers).map(server => {
-            return <Server server={server}/>
+            return <Server server={server} key={server.id}/>
         })
 
     )

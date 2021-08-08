@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap");
+* {
+  font-family: "Quicksand", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+body {
+  background-color: #2c2f33;
+}
+
+.sidebar {
+  height: 100vh;
+  width: 5.5%;
+  background-color: #23282A;
+  position: relative;
+  overflow: hidden scroll;
+}
+
+.sidebar .profile {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  text-align: center;
+}
+
+.sidebar .profile img {
+  height: 3.5em;
+  width: 3.5em;
+  border-radius: 0.5em;
+  border: 0.125em solid #c9c9c9;
+  -webkit-box-shadow: 1px 1px 20px 1px black;
+          box-shadow: 1px 1px 20px 1px black;
+  cursor: pointer;
+}
+
+.sidebar .server-profile-separator {
+  border: 1px solid #414141;
+  background-color: #414141;
+  width: 3em;
+  margin: auto;
+  border-radius: 0.5em;
+}
+
+.sidebar .server-search {
+  padding-top: 0.2em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: auto;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  background-color: #9b9b9b;
+  border-radius: 0.25em;
+  width: 3em;
+}
+
+.sidebar .server-search img {
+  width: 1em;
+  height: 1em;
+}
+
+.sidebar .servers {
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sidebar .servers ul {
+  list-style-type: none;
+}
+
+.sidebar .servers img {
+  height: 3em;
+  width: 3em;
+  border-radius: 0.5em;
+  border: 4px solid #30373a;
+  cursor: pointer;
+}
+
+.sidebar .servers .no-icon {
+  color: white;
+  background-color: #414b50;
+  width: 3em;
+  height: 3em;
+  border-radius: 0.6em;
+  border: 4px solid #30373a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  cursor: pointer;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.loading img {
+  -webkit-animation: fade 0.2s ease-in;
+          animation: fade 0.2s ease-in;
+  height: 2.5em;
+  width: 2.5em;
+}
+
+.login {
+  background: #26292e;
+  color: white;
+  padding: 4em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 1em;
+  -webkit-box-shadow: 3px 3px 60px 6px black;
+          box-shadow: 3px 3px 60px 6px black;
+  -webkit-animation: fade 0.2s ease-in;
+          animation: fade 0.2s ease-in;
+  border: 10px solid #24262b;
+}
+
+.login button {
+  text-decoration: none;
+  color: white;
+  border-radius: 0.2em;
+  background-color: #5765F2;
+  padding: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+  font-size: 1em;
+  border: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-transition: .17s ease;
+  transition: .17s ease;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.login button:hover {
+  background-color: #4752C4;
+}
+
+.login button:active {
+  background-color: #3C45A5;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main .homepage {
+  width: 94.5%;
+  height: 100vh;
+  color: white;
+}
+
+.main .homepage .homeh1 {
+  background-color: black;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  margin: auto;
+}
+
+.main .homepage .analytics {
+  color: white;
+  margin-left: 1em;
+  margin-top: 1em;
+}
+
+.api {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  padding: 1em;
+  border: 10px solid #24262b;
+  border-radius: 1em;
+  -webkit-box-shadow: 3px 3px 60px 6px black;
+          box-shadow: 3px 3px 60px 6px black;
+  -webkit-animation: fade 0.2s ease-in;
+          animation: fade 0.2s ease-in;
+}
+
+.api img {
+  width: 6em;
+}
+
+.api h1 {
+  margin-bottom: 0.2em;
+}
+
+.api h3 {
+  margin-bottom: 1em;
+}
+
+.api p {
+  color: #9e9e9e;
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+}
+/*# sourceMappingURL=index.css.map */
